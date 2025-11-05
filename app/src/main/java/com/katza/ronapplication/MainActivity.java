@@ -1,54 +1,65 @@
-
 package com.katza.ronapplication;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.Switch;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
+
+    private Switch switch2;
+    private ImageView imageView3;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        initViews();
-    }
-    android.widget.Button btn1,btn2,btn3;
-    private void initViews(){
-        btn1 = findViewById(R.id.btn1);
-        btn1.setOnClickListener(this);
-        btn2 = findViewById(R.id.btn2);
-        btn2.setOnClickListener(this);
-        btn3.findViewById(R.id.btn3);
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "shalom", Toast.LENGTH_SHORT).show();
+
+
+        switch2 = findViewById(R.id.switch2);
+        imageView3 = findViewById(R.id.imageView3);
+        seekBar = findViewById(R.id.seekBar);
+
+
+        imageView3.setVisibility(ImageView.INVISIBLE);
+        seekBar.setEnabled(false);
+
+
+        switch2.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                imageView3.setVisibility(ImageView.VISIBLE);
+                seekBar.setEnabled(true); // מאפשר לשלוט בבהירות
+            } else {
+                imageView3.setVisibility(ImageView.INVISIBLE);
+                seekBar.setEnabled(false); // מנטרל את השליטה בבהירות
             }
         });
 
-    }
 
-    @Override
-    public void onClick(View v) {
-if (v == btn1)
-    Toast.makeText(this, "Click btn1", Toast.LENGTH_SHORT).show();
-else if (v == btn2)
-    Toast.makeText(this, "Click btn2", Toast.LENGTH_SHORT).show();
-else
-    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        seekBar.setMax(100);
+        seekBar.setProgress(100);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (switch2.isChecked()) {
+
+                    float alpha = progress / 100f;
+                    imageView3.setAlpha(alpha);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 }
