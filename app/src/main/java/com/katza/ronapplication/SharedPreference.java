@@ -1,13 +1,17 @@
 package com.katza.ronapplication;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,5 +93,34 @@ public class SharedPreference extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_Dynamic) {
+            Toast.makeText(this, "Dynamic clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,DynamicActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.action_Main) {
+            Toast.makeText(this, "Main clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        } else if (id == R.id.action_SP) {
+            Toast.makeText(this, "SP clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,SharedPreference.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

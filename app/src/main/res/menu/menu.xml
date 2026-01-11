@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_Dynamic"
+        android:title="Dynamic"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_Main"
+        android:title="Main"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_SP"
+        android:title="SP"
+        app:showAsAction="never"/>
+</menu>
