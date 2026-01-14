@@ -127,6 +127,12 @@ public class DynamicActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
+        else if (id == R.id.action_Intent) {
+            Toast.makeText(this, "מעבר לשאלון", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, IntentActivity.class);
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

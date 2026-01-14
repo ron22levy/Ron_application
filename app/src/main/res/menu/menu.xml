@@ -13,4 +13,8 @@
         android:id="@+id/action_SP"
         android:title="SP"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_Intent"
+        android:title="שאלון"
+        app:showAsAction="never" />
 </menu>
